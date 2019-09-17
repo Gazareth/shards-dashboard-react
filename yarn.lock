@@ -7985,9 +7985,9 @@ shallow-clone@^1.0.0:
     kind-of "^5.0.0"
     mixin-object "^2.0.1"
 
-shards-react@^0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/shards-react/-/shards-react-0.0.5.tgz#fd9c3d6050735b70ced7fb9841b2acf55851c16e"
+shards-react@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/shards-react/-/shards-react-1.0.1.tgz#09e155b0654c34bd36be06b231682f07a73fd54a"
   dependencies:
     bootstrap "^4.1.3"
     classnames "^2.2.6"
