@@ -4,6 +4,10 @@ import { Container, Row, Col } from "shards-react";
 
 import PageTitle from "./../components/common/PageTitle";
 import SmallStats from "./../components/common/SmallStats";
+import SmallStatsOrig from "./../components/common/SmallStats_Orig";
+
+import LargeStats from "./../components/common/LargeStats";
+import MyFavouritePies from "./../components/blog/MyFavouritePies";
 import UsersOverview from "./../components/blog/UsersOverview";
 import UsersByDevice from "./../components/blog/UsersByDevice";
 import NewDraft from "./../components/blog/NewDraft";
@@ -23,7 +27,7 @@ const BlogOverview = ({ smallStats }) => (
         <Col className="col-lg mb-4" key={idx} {...stats.attrs}>
           <SmallStats
             id={`small-stats-${idx}`}
-            variation="1"
+            variation="0"
             chartData={stats.datasets}
             chartLabels={stats.chartLabels}
             label={stats.label}
@@ -36,7 +40,35 @@ const BlogOverview = ({ smallStats }) => (
       ))}
     </Row>
 
+		{<Row>
+      {smallStats.map((stats, idx) => (
+        <Col className="col-lg mb-4" key={idx} {...stats.attrs}>
+          <SmallStats
+            id={`small-stats-${idx}`}
+            variation="1"
+            chartData={stats.datasets}
+            chartLabels={stats.chartLabels}
+            label={stats.label}
+            value={stats.value}
+            percentage={stats.percentage}
+            increase={stats.increase}
+            decrease={stats.decrease}
+          />
+        </Col>
+      ))}
+    </Row>}
+		
     <Row>
+  	  { /* Data Card */ }
+      <Col lg="8" md="12" sm="12" className="mb-4">
+        <LargeStats title="Data Card!" type="line" bodyConfig={true} footerConfig={false} />
+      </Col>
+		
+  	  {/* My Favourite Pies */}
+      <Col lg="4" md="6" sm="12" className="mb-4">
+        <LargeStats title="My Favourite Pies" type="pie" footerConfig={true} bodyConfig={true} />
+      </Col>
+
       {/* Users Overview */}
       <Col lg="8" md="12" sm="12" className="mb-4">
         <UsersOverview />
