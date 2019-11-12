@@ -5,7 +5,7 @@ import DataCard from "./DataCard";
 import classNames from "classnames";
 import { Card, CardBody } from "shards-react";
 
-import Chart from "../../utils/charts/chartPicker";
+import Chart from "../../../utils/charts/chartPicker";
 
 class SmallStats extends DataCard {
   constructor(props) {
@@ -25,6 +25,7 @@ class SmallStats extends DataCard {
 	}
 	
 	drawGraph(){
+		console.log("Drawing graph... data: ",this.props.chartData);
 		let ChartStuff = {
 			type: "small",
 			data: {
@@ -45,17 +46,19 @@ class SmallStats extends DataCard {
 	  const { label, value, percentage, increase } = this.props;
 	  const variation = this.state.variation;
 	  
+	  const cardStyle = this.state.error ? {backgroundColor: "#F0F0F0"} : {};
+	  
 	const cardClasses = classNames(
 	  "stats-small",
 	  variation && `stats-small--${variation}`
 	);
 
 	const cardBodyClasses = classNames(
-	  variation === "1" ? "p-0 d-flex" : "px-0 pb-0"
+	  variation === "3" ? "p-0 d-flex" : "px-0 pb-0",
 	);
 	const innerWrapperClasses = classNames(
 	  "d-flex",
-	  variation === "1" ? "flex-column m-auto" : "px-3"
+	  variation === "1" ? "flex-column m-auto" : "px-3",
 	);
 
 	const dataFieldClasses = classNames(
@@ -87,7 +90,7 @@ class SmallStats extends DataCard {
 	  
 	  
     return (
-      <Card small className={cardClasses} onClick={this.switchVariation}>
+      <Card small className={cardClasses} onClick={this.switchVariation} style={cardStyle}>
         <CardBody className={cardBodyClasses}>
           {this.loaded(<div className={innerWrapperClasses}>
 		  	<div className={dataFieldClasses}>

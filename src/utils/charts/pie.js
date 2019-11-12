@@ -9,7 +9,8 @@ const PieChart = ({ chartData, height, cutoutPercentage }) => {
       options: {
         ...{
 		  layout: {
-			padding: height*0.15,
+			//padding: height*0.15,
+			margin: "auto",
 		  },
           legend: {
             position: "bottom",

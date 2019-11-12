@@ -3,11 +3,16 @@ import PropTypes from "prop-types";
 import { Container, Row, Col } from "shards-react";
 
 import PageTitle from "./../components/common/PageTitle";
-import SmallStats from "./../components/common/SmallStats";
-import SmallStatsOrig from "./../components/common/SmallStats_Orig";
+//import SmallStatsOrig from "./../components/common/SmallStats_Orig";
+import StatsCard from "./../components/common/stats-cards/StatsCard";
+import SmallStats from "./../components/common/stats-cards/SmallStats";
 
-import LargeStats from "./../components/common/LargeStats";
-import MyFavouritePies from "./../components/blog/MyFavouritePies";
+//chart data
+import PieData from "./../store/dataExamples/pieData";
+import LineData from "./../store/dataExamples/lineData";
+
+
+//import MyFavouritePies from "./../components/blog/MyFavouritePies";
 import UsersOverview from "./../components/blog/UsersOverview";
 import UsersByDevice from "./../components/blog/UsersByDevice";
 import NewDraft from "./../components/blog/NewDraft";
@@ -23,10 +28,11 @@ const BlogOverview = ({ smallStats }) => (
 
     {/* Small Stats Blocks */}
     <Row>
-      {smallStats.map((stats, idx) => (
+      {smallStats.slice(0,4).map((stats, idx) => (
         <Col className="col-lg mb-4" key={idx} {...stats.attrs}>
-          <SmallStats
-            id={`small-stats-${idx}`}
+          <StatsCard
+            id={`small-stats-1${idx}`}
+			cardType='small'
             variation="0"
             chartData={stats.datasets}
             chartLabels={stats.chartLabels}
@@ -44,7 +50,7 @@ const BlogOverview = ({ smallStats }) => (
       {smallStats.map((stats, idx) => (
         <Col className="col-lg mb-4" key={idx} {...stats.attrs}>
           <SmallStats
-            id={`small-stats-${idx}`}
+            id={`small-stats-2${idx}`}
             variation="1"
             chartData={stats.datasets}
             chartLabels={stats.chartLabels}
@@ -61,14 +67,75 @@ const BlogOverview = ({ smallStats }) => (
     <Row>
   	  { /* Data Card */ }
       <Col lg="8" md="12" sm="12" className="mb-4">
-        <LargeStats title="Data Card!" type="line" bodyConfig={true} footerConfig={false} />
+        <StatsCard cardType="large" title="Data Card!" chartType="line" chartData={LineData} bodyConfig={true} footerConfig={false} />
       </Col>
 		
+		  	  {/* My Favourite Pies */}
+      <Col lg="4" md="12" sm="12" className="mb-4">
+        <StatsCard cardType='large' title="My Favourite Pies" chartType="pie" chartData={PieData} footerConfig={true} bodyConfig={false} />
+      </Col>
+		{console.log("about to do smallstats grp #3...")}
+		<Col>
+		<Row>
+		{smallStats.slice(0,4).map((stats, idx) => (
+        <Col className="col-lg mb-4" key={idx} {...stats.attrs}>
+          <SmallStats
+            id={`small-stats-3${idx}`}
+            variation="1"
+            chartData={stats.datasets}
+            chartLabels={stats.chartLabels}
+            label={stats.label}
+            value={stats.value}
+            percentage={stats.percentage}
+            increase={stats.increase}
+            decrease={stats.decrease}
+          />
+        </Col>
+      ))}
+</Row>
+			
+					<Row>
+		{smallStats.map((stats, idx) => (
+        <Col className="col-lg mb-4" key={idx} {...stats.attrs}>
+          <SmallStats
+            id={`small-stats-4${idx}`}
+            variation="1"
+            chartData={stats.datasets}
+            chartLabels={stats.chartLabels}
+            label={stats.label}
+            value={stats.value}
+            percentage={stats.percentage}
+            increase={stats.increase}
+            decrease={stats.decrease}
+          />
+        </Col>
+      ))}
+</Row>
+								<Row>
+		{smallStats.slice(0,3).map((stats, idx) => (
+        <Col className="col-lg mb-4" key={idx} {...stats.attrs}>
+          <SmallStats
+            id={`small-stats-5${idx}`}
+            variation="1"
+            chartData={stats.datasets}
+            chartLabels={stats.chartLabels}
+            label={stats.label}
+            value={stats.value}
+            percentage={stats.percentage}
+            increase={stats.increase}
+            decrease={stats.decrease}
+          />
+        </Col>
+      ))}
+</Row>
+			</Col>
+			
   	  {/* My Favourite Pies */}
-      <Col lg="4" md="6" sm="12" className="mb-4">
-        <LargeStats title="My Favourite Pies" type="pie" footerConfig={true} bodyConfig={true} />
+      <Col lg="4" md="12" sm="12" className="mb-4">
+        <StatsCard cardType='large' title="My Favourite Pies" chartType="pie" chartData={PieData} footerConfig={true} bodyConfig={false} />
       </Col>
 
+		
       {/* Users Overview */}
       <Col lg="8" md="12" sm="12" className="mb-4">
         <UsersOverview />
@@ -111,7 +178,7 @@ BlogOverview.defaultProps = {
       value: "2,390",
       percentage: "4.7%",
       increase: true,
-      chartLabels: [null, null, null, null, null, null, null],
+      chartLabels: new Array(7).fill(null),
       attrs: { md: "6", sm: "6" },
       datasets: [
         {

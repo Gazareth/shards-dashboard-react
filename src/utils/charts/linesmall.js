@@ -7,7 +7,7 @@ const SmallLineChart = ({ data, chartOptions }) => {
 		data,
 		options: {
 			...chartOptions,
-			maintainAspectRatio: true,
+			maintainAspectRatio: false,
 			responsive: true,
 			legend: {
 				display: false
@@ -39,13 +39,13 @@ const SmallLineChart = ({ data, chartOptions }) => {
 						isplay: false,
 						// Avoid getting the graph line cut of at the top of the canvas.
 						// Chart.js bug link: https://github.com/chartjs/Chart.js/issues/4790
-						suggestedMax: Math.max(...data.datasets[0].data) + Math.max(...data.datasets[0].data)*.35
+						suggestedMax: Math.max(...data.datasets[0].data) + Math.max(...data.datasets[0].data)*.15
 					}
 				}]
 			}
 		}
 	}
-
+console.log("SMALL CHART DATA: ",data)
 	return <Line {...chartConfig}/>
 	};
 

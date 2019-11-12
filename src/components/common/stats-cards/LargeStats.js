@@ -14,14 +14,11 @@ import {
 } from "shards-react";
 
 //Charts
-import Chart from "../../utils/charts/chartPicker"
-//pie
-import PieData from "../../utils/charts/dataExamples/pieData";
-//line
-import LineData from "../../utils/charts/dataExamples/lineData";
+import Chart from "../../../utils/charts/chartPicker"
 
 
-import RangeDatePicker from "../common/RangeDatePicker";
+
+import RangeDatePicker from "../RangeDatePicker";
 
 //Wrapper for a small or large data card on the dashboard.
 //	Handles loading/fetching data & displays the appropriate graph afterwards
@@ -35,14 +32,15 @@ class LargeStats extends DataCard {
 	}
 	
 	drawGraph(){
-		const pieHeight = 280 - (this.props.footerConfig ? 30 : 0) - (this.props.bodyConfig ? 30 : 0);
+		const pieHeight = 250 - (this.props.footerConfig ? 30 : 0) - (this.props.bodyConfig ? 30 : 0);
 		
 		let ChartStuff = {
-			type: this.props.type,
-			height: (this.props.type === "pie" ? pieHeight : 120),
-			chartData: (this.props.type === "pie" ? PieData : LineData),
+			type: this.props.chartType,
+			height: (this.props.chartType === "pie" ? pieHeight : 120),
+			chartData: this.props.chartData,
 			cutoutPercentage: this.props.cutoutPct
 		};
+
 		return Chart(ChartStuff);
 	}
 
@@ -125,7 +123,7 @@ LargeStats.defaultProps = {
 	title: "Chart Title",
 	bodyConfig: false,
 	footerConfig: false,
-	chartData: LineData,
+	chartData: {},
 	configOptions: [
 	  ["last-week", "Last Week"],
 	  ["today", "Today"],
