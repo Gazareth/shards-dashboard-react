@@ -1,6 +1,12 @@
 export default function() {
   return [
     {
+      title: "Data Health",
+      to: "/data-health",
+      htmlBefore: '<i class="material-icons">healing</i>',
+      htmlAfter: ""
+    },
+    {
       title: "Blog Dashboard",
       to: "/blog-overview",
       htmlBefore: '<i class="material-icons">edit</i>',

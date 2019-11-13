@@ -46,6 +46,9 @@ class LargeStats extends DataCard {
 
 	
 	render() {
+		/****************
+		/* PREPARATION
+		/****************/
 		const bodyClasses = this.props.bodyConfig ? "pt-0" : "d-flex py-0";
 
 		
@@ -89,7 +92,9 @@ class LargeStats extends DataCard {
 		const bodyConfig = this.props.bodyConfig ? bodyConfig_component : "";
 		const footerConfig = (this.props.footerConfig ? footerConfig_component : "");
 
-		
+		/****************
+		/* RENDER
+		/****************/
 		return (
 			<Card small className="h-100">
 				{/* header for title */}

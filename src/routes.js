@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom';
 import { DefaultLayout } from './layouts';
 
 // Route Views
+import DataHealth from './views/DataHealth';
 import BlogOverview from './views/BlogOverview';
 import UserProfileLite from './views/UserProfileLite';
 import AddNewPost from './views/AddNewPost';
@@ -18,7 +19,12 @@ export default [
     path: '/',
     exact: true,
     layout: DefaultLayout,
-    component: () => <Redirect to="/blog-overview" />,
+    component: () => <Redirect to="/data-health" />,
+  },
+  {
+    path: '/data-health',
+    layout: DefaultLayout,
+    component: DataHealth,
   },
   {
     path: '/blog-overview',

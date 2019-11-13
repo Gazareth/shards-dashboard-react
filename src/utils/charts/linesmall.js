@@ -45,7 +45,6 @@ const SmallLineChart = ({ data, chartOptions }) => {
 			}
 		}
 	}
-console.log("SMALL CHART DATA: ",data)
 	return <Line {...chartConfig}/>
 	};
 

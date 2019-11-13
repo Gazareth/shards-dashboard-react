@@ -34,13 +34,7 @@ const BlogOverview = ({ smallStats }) => (
             id={`small-stats-1${idx}`}
 			cardType='small'
             variation="0"
-            chartData={stats.datasets}
-            chartLabels={stats.chartLabels}
-            label={stats.label}
-            value={stats.value}
-            percentage={stats.percentage}
-            increase={stats.increase}
-            decrease={stats.decrease}
+			{...stats}
           />
         </Col>
       ))}
@@ -52,13 +46,7 @@ const BlogOverview = ({ smallStats }) => (
           <SmallStats
             id={`small-stats-2${idx}`}
             variation="1"
-            chartData={stats.datasets}
-            chartLabels={stats.chartLabels}
-            label={stats.label}
-            value={stats.value}
-            percentage={stats.percentage}
-            increase={stats.increase}
-            decrease={stats.decrease}
+			{...stats}
           />
         </Col>
       ))}
@@ -82,13 +70,7 @@ const BlogOverview = ({ smallStats }) => (
           <SmallStats
             id={`small-stats-3${idx}`}
             variation="1"
-            chartData={stats.datasets}
-            chartLabels={stats.chartLabels}
-            label={stats.label}
-            value={stats.value}
-            percentage={stats.percentage}
-            increase={stats.increase}
-            decrease={stats.decrease}
+			{...stats}
           />
         </Col>
       ))}
@@ -100,13 +82,7 @@ const BlogOverview = ({ smallStats }) => (
           <SmallStats
             id={`small-stats-4${idx}`}
             variation="1"
-            chartData={stats.datasets}
-            chartLabels={stats.chartLabels}
-            label={stats.label}
-            value={stats.value}
-            percentage={stats.percentage}
-            increase={stats.increase}
-            decrease={stats.decrease}
+			{...stats}
           />
         </Col>
       ))}
@@ -117,13 +93,7 @@ const BlogOverview = ({ smallStats }) => (
           <SmallStats
             id={`small-stats-5${idx}`}
             variation="1"
-            chartData={stats.datasets}
-            chartLabels={stats.chartLabels}
-            label={stats.label}
-            value={stats.value}
-            percentage={stats.percentage}
-            increase={stats.increase}
-            decrease={stats.decrease}
+			{...stats}
           />
         </Col>
       ))}
@@ -180,7 +150,7 @@ BlogOverview.defaultProps = {
       increase: true,
       chartLabels: new Array(7).fill(null),
       attrs: { md: "6", sm: "6" },
-      datasets: [
+      chartData: [
         {
           label: "Today",
           fill: "start",
@@ -198,7 +168,7 @@ BlogOverview.defaultProps = {
       increase: true,
       chartLabels: [null, null, null, null, null, null, null],
       attrs: { md: "6", sm: "6" },
-      datasets: [
+      chartData: [
         {
           label: "Today",
           fill: "start",
@@ -217,7 +187,7 @@ BlogOverview.defaultProps = {
       decrease: true,
       chartLabels: [null, null, null, null, null, null, null],
       attrs: { md: "4", sm: "6" },
-      datasets: [
+      chartData: [
         {
           label: "Today",
           fill: "start",
@@ -236,7 +206,7 @@ BlogOverview.defaultProps = {
       decrease: true,
       chartLabels: [null, null, null, null, null, null, null],
       attrs: { md: "4", sm: "6" },
-      datasets: [
+      chartData: [
         {
           label: "Today",
           fill: "start",
@@ -255,7 +225,7 @@ BlogOverview.defaultProps = {
       decrease: true,
       chartLabels: [null, null, null, null, null, null, null],
       attrs: { md: "4", sm: "6" },
-      datasets: [
+      chartData: [
         {
           label: "Today",
           fill: "start",

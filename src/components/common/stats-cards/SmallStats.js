@@ -20,16 +20,14 @@ class SmallStats extends DataCard {
   }
 
 	switchVariation() {
-		console.log("Setting variation on "+this.props.key+" to not "+this.state.variation);
 		this.setState(state=>({...state, variation: (state.variation === "1" ? "0" : "1")}));
 	}
 	
 	drawGraph(){
-		console.log("Drawing graph... data: ",this.props.chartData);
 		let ChartStuff = {
 			type: "small",
 			data: {
-				labels: this.props.chartLabels,
+				labels: new Array(this.props.chartData[0].data.length).fill(null),
 				datasets: this.props.chartData
 			},
 			cutoutPercentage: this.props.cutoutPct,
