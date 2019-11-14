@@ -28,8 +28,9 @@ const BlogOverview = ({ smallStats, cardLayout }) => (
     </Row>
 
 	{resolveLayout(cardLayout)}
+	{/*resolveLayout(cardLayout)*/}
 		
-    {/* Small Stats Blocks */console.log("RESLVED LAYOUT: ",resolveLayout(cardLayout))}
+		{/* Small Stats Blocks */console.log("RESLVED LAYOUT: ",resolveLayout(cardLayout))}
     <Row>
       {smallStats.map((stats, idx) => (
         <Col className="col-lg mb-4" key={idx} {...stats.attrs}>
@@ -65,6 +66,8 @@ const BlogOverview = ({ smallStats, cardLayout }) => (
       <Col lg="4" md="12" sm="12" className="mb-4">
         <StatsCard cardType='large' title="My Favourite Pies" chartType="pie" chartData={PieData} footerConfig={true} bodyConfig={false} />
       </Col>
+		
+
 		{console.log("about to do smallstats grp #3...")}
 		<Col>
 			<Row>
@@ -144,6 +147,8 @@ BlogOverview.propTypes = {
   smallStats: PropTypes.array
 };
 
+
+//helper function to create SmallStats react component
 const smallDataOptions = (idx,label,value,percentage,isIncrease,layout,chartDataInfo)=> {
 		return ({
 			label,
@@ -155,6 +160,7 @@ const smallDataOptions = (idx,label,value,percentage,isIncrease,layout,chartData
 		})
 };
 
+//hard-coded arrays to be inserted into above function to produce a fully-complete SmallStats react component
 const smallStats__ = [
 		["Posts","2,390","4.7%",true,{md: "6", sm: "6"}, [0, "rgba(0, 184, 216, 0.1)", "rgb(0, 184, 216)"] ],
 		["Pages","182","12.4%",true,{md: "6", sm: "6"}, [1, "rgba(23,198,113,0.1)", "rgb(23,198,113)"] ],
@@ -163,13 +169,22 @@ const smallStats__ = [
 		["Subscribers","17,281","2.4%",false,{md: "6", sm: "6"}, [3, "rgb(0,123,255,0.1)", "rgb(0,123,255)"] ],
 		];
 
-const resolveLayout = (layout)=>{
-	const reactLayout = layout.map((c,i)=>{
-		if( c.type === "row" ){ return <Row> {resolveLayout(c.childs)} </Row>}
-		else if( c.type.includes("smallStats") ) {
-			const smallStatsId = c.type.split("-")[1];
+
+const resolveLayout = (layout,level=0)=>{
+	const indent = new Array(level).fill("     ").join();
+	console.log(indent+"got layout!",layout);
+	const reactLayout = layout.map((l,i)=>{
+		console.log(indent+"level: ",level," performing map on l: ",l);
+		if(Array.isArray(l)) {
+			console.log(indent+"is array so becoming ",level % 2 ? "col" : "row"," because of level ",level);
+			return level % 2 ? <Col>{resolveLayout(l,level+1)}</Col> : <Row>{resolveLayout(l,level+1)}</Row>;
+		} else if( l.includes("smallStats") ) {
+			console.log(indent+"is smallStats!")
+			const smallStatsId = parseInt(l.split("-")[1]);
+			console.log(indent+"Got smallStats Id: ",smallStatsId);
 			const smallStatsStuff = smallStats__[smallStatsId];
-			console.log("Building smallstats from ",smallStatsStuff,smallDataOptions(smallStatsId, ...smallStatsStuff));
+			console.log(indent+"Got smallStats stuff: ",smallStatsStuff,smallStats__[smallStatsId]);
+			console.log(indent+ "Building smallstats from ",smallStatsStuff,smallDataOptions(smallStatsId, ...smallStatsStuff));
 			return (<Col className="col-lg mb-4" key={i} {...(smallStatsStuff[4])}>
 				          <StatsCard
             		id={`small-stats-1${i}`}
@@ -177,46 +192,24 @@ const resolveLayout = (layout)=>{
             		variation="0"
 					{...smallDataOptions(smallStatsId, ...smallStatsStuff)}
           /></Col>);
+		} else if( l.includes("largeStats")) {
+			return console.log("resolveLayout: Found largeStats! TODO!!!");
 		} else return null;
 	});
 	return reactLayout;
 };
 
+
+
 BlogOverview.defaultProps = {
   smallStats: smallStats__.map((e,i)=>smallDataOptions(i,...e)),
+
 	cardLayout: [
-		{
-			type: "row",
-			childs: [
-				{
-					type: "smallStats-0",
-				},
-				{
-					type: "smallStats-1",
-				},
-				{
-					type: "smallStats-2",
-				}
-			]
-		},
-		{
-			type: "row",
-			childs: [
-				{
-					type: "smallStats-0",
-				},
-				{
-					type: "smallStats-1",
-				},
-				{
-					type: "smallStats-2",
-				},
-				{
-					type: "smallStats-4",
-				}
-			]
-		},
-	],
+		["smallStats-0,","smallStats-1","smallStats-2"],
+		["smallStats-0","smallStats-1","smallStats-2","smallStats-4"],
+		[["smallStats-0","smallStats-1","smallStats-2"],"smallStats-4"],
+	]
+	
 };
 
 export default BlogOverview;
