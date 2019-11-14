@@ -49,10 +49,11 @@ class LargeStats extends DataCard {
 		/****************
 		/* PREPARATION
 		/****************/
+		const cardStyle = this.state.error ? {backgroundColor: "#F0F0F0"} : {};
 		const bodyClasses = this.props.bodyConfig ? "pt-0" : "d-flex py-0";
 
 		
-		const bodyConfig_component = (
+		const bodyConfig = (
 			<Row className="border-bottom py-2 bg-light">
 				<Col sm="6" className="d-flex mb-2 mb-sm-0">
 					<RangeDatePicker />
@@ -68,7 +69,7 @@ class LargeStats extends DataCard {
 			</Row>
 		);
 		
-		const footerConfig_component = (
+		const footerConfig = (
 			<CardFooter className="border-top">
 				<Row>
 					<Col>
@@ -89,26 +90,26 @@ class LargeStats extends DataCard {
 			</CardFooter>
 		);
 		
-		const bodyConfig = this.props.bodyConfig ? bodyConfig_component : "";
-		const footerConfig = (this.props.footerConfig ? footerConfig_component : "");
+		//const bodyConfig = this.props.bodyConfig ? bodyConfig_component : "";
+		//const footerConfig = ( ? footerConfig_component : "");
 
 		/****************
 		/* RENDER
 		/****************/
 		return (
-			<Card small className="h-100">
+			<Card small className="h-100" style={cardStyle}>
 				{/* header for title */}
 				<CardHeader className="border-bottom">
 					<h6 className="m-0">{this.props.title}</h6>
 				</CardHeader>
 				<CardBody className={bodyClasses}>
 					{/*row for datepicker and link*/}
-					{bodyConfig}
+					{this.props.bodyConfig && bodyConfig}
 					{this.loaded(this.drawGraph())}
 					{this.loaded(this.loadingSpinner(),false)}
 				</CardBody>
 				{/*footer for timeframe option selection*/}
-				{footerConfig}
+				{this.props.footerConfig && footerConfig}
 			</Card>
 		);
 	}
