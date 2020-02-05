@@ -17,7 +17,6 @@ import {
 import Chart from "../../../utils/charts/chartPicker"
 
 
-
 import RangeDatePicker from "../RangeDatePicker";
 
 //Wrapper for a small or large data card on the dashboard.
@@ -37,7 +36,7 @@ class LargeStats extends DataCard {
 		let ChartStuff = {
 			type: this.props.chartType,
 			height: (this.props.chartType === "pie" ? pieHeight : 120),
-			chartData: this.props.chartData,
+			data: this.props.chartData,
 			cutoutPercentage: this.props.cutoutPct
 		};
 

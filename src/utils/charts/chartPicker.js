@@ -1,6 +1,6 @@
 import PieChart from "./pie";
 import LineChart from "./line";
-import SmallLineChart from "./linesmall";
+import {SmallTemplate} from "./linesmall";
 
 const Chart = (props) => {
 	let Chart = 0;
@@ -12,7 +12,7 @@ const Chart = (props) => {
 			Chart = PieChart(props);
 			break;
 		case "small":
-			Chart = SmallLineChart(props);
+			Chart = SmallTemplate(props);
 			break;
 		default:
 			break;

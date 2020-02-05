@@ -1,10 +1,10 @@
 import React from 'react'
 import Line from 'react-chartjs-2';
 
-const LineChart = ({ chartData, height }) => {
+const LineChart = ({ data, height }) => {
 	const chartConfig = {
 		type: "LineWithLine",
-		data: chartData,
+		data,
 		height: 120,
 		options: {
 			responsive: true,

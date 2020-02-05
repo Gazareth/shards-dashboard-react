@@ -19,7 +19,7 @@ class DataCard extends React.Component {
 	}
 	
 	setLoaded(){
-		this.setState(state=>({...state, loaded: true, error: (Math.random() > 0.9) }));
+		this.setState(state=>({...state, loaded: true, error: (Math.random() > 0.8) }));
 	}
 	
 	componentDidMount() {

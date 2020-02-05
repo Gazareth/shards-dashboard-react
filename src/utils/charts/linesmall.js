@@ -48,4 +48,3 @@ const SmallLineChart = ({ data, chartOptions }) => {
 	return <Line {...chartConfig}/>
 	};
 
-export default SmallLineChart;
