@@ -1,3 +1,28 @@
+# Data Health Dashboard 
+Fork of ***Shards Dashboard React*** -- reworked for greater functonality and programmability.
+
+- All dashboard components now inherit from a **shared base component**.
+- Base component feature: **"Loading" animation** and **"Error" state** for when data is being fetched, and for when no data is found.
+- "Large" and "Small" dash "Cards" can be placed using a **less-verbose layout description**:
+![](layout_img.PNG)
+
+Constructed with simple strings inside arrays. Strings (e.g. *"smallstats-1"*) refer to cards that can be defined in a more convenient location elsewhere. Nested arrays alternate between 'column' and 'row' configuration, e.g. line 3 shows three cards in 'column' formation, alongside one card to form a row (see gif below!).
+
+### Original layout style
+
+![](layout_original.PNG)
+
+### Working example
+
+![](demogif.gif)
+
+
+---
+
+
+#### Built using...
+
+
 <p align="center">
 <a href="https://designrevision.com/downloads/shards-dashboard-lite-react/">
 <img src="assets/preview.png" width="250" />
